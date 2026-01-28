@@ -7,4 +7,5 @@ catboost
 xgboost
 pydantic
 dill
+flask
 -e .

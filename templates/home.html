@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Student Score Prediction</title>
+        <style>
+            body { font-family: Arial, sans-serif; background: #f6f9fc; color: #212529; }
+            .container { max-width: 720px; margin: 36px auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+            h1 { margin-top: 0; font-size: 1.6rem; }
+            label { display:block; margin-top:12px; font-weight:600; }
+            select, input[type=number], input[type=text] { width:100%; padding:8px 10px; margin-top:6px; border:1px solid #dfe6ef; border-radius:6px; }
+            .row { display:flex; gap:12px; }
+            .col { flex:1; }
+            .submit { margin-top:18px; background:#2563eb; color:#fff; padding:10px 14px; border:none; border-radius:6px; cursor:pointer; font-weight:700; }
+            .result { margin-top:18px; padding:12px; background:#eef2ff; border-left:4px solid #4f46e5; border-radius:4px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Student Score Prediction</h1>
+
+            <form action="/predict" method="post">
+                <div class="row">
+                    <div class="col">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select gender</option>
+                            <option value="female">female</option>
+                            <option value="male">male</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="race_ethnicity">Race / Ethnicity</label>
+                        <select id="race_ethnicity" name="race_ethnicity" required>
+                            <option value="">Select group</option>
+                            <option value="group A">group A</option>
+                            <option value="group B">group B</option>
+                            <option value="group C">group C</option>
+                            <option value="group D">group D</option>
+                            <option value="group E">group E</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label for="parental_level_of_education">Parental Level Of Education</label>
+                <select id="parental_level_of_education" name="parental_level_of_education" required>
+                    <option value="">Select education</option>
+                    <option value="associate's degree">associate's degree</option>
+                    <option value="bachelor's degree">bachelor's degree</option>
+                    <option value="high school">high school</option>
+                    <option value="master's degree">master's degree</option>
+                    <option value="some college">some college</option>
+                    <option value="some high school">some high school</option>
+                </select>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="reading_score">Reading Score</label>
+                        <input type="number" id="reading_score" name="reading_score" min="17" max="100" value="50" required>
+                    </div>
+                    <div class="col">
+                        <label for="writing_score">Writing Score</label>
+                        <input type="number" id="writing_score" name="writing_score" min="10" max="100" value="50" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="lunch">Lunch</label>
+                        <select id="lunch" name="lunch" required>
+                            <option value="">Select lunch</option>
+                            <option value="free/reduced">free/reduced</option>
+                            <option value="standard">standard</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="test_preparation_course">Test Preparation Course</label>
+                        <select id="test_preparation_course" name="test_preparation_course" required>
+                            <option value="">Select</option>
+                            <option value="completed">completed</option>
+                            <option value="none">none</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit">Predict</button>
+            </form>
+
+            {% if results %}
+            <div class="result">
+                <strong>Math Score Prediction:</strong> {{ results }}
+            </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
